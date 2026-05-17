@@ -28,7 +28,7 @@ export default function MessageDetail() {
         <Navbar />
 
         <div className="detail-card">
-            <img src={message.media_url || '/placeholder.jpg'} alt="thumbnail" className="detail-thumbnail" />
+            <img src={message.media_url || '/placeholder.jpg'} alt="thumbnail" className="detail-thumbnail-box" /> {/* <-- Ubah class name ini aja */}
             <div className="detail-info">
             <span className="detail-to">To: {message.recipient_name}</span>
             <p className="detail-content">{message.content}</p>

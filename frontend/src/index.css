@@ -268,26 +268,31 @@ body {
   background: linear-gradient(135deg, #c8a96e, #e8c97a, #1a1a1a);
   min-height: 280px;
   display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
+  
+  /* PERUBAHAN UTAMA: Baris ke samping, bukan tumpuk */
+  flex-direction: row; 
+  align-items: center;
+  padding: 30px;
+  gap: 30px;
 }
 
-.detail-thumbnail {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+/* Pengganti .detail-thumbnail agar tidak jadi background */
+.detail-thumbnail-box {
+  width: 250px;
+  height: 250px;
   object-fit: cover;
-  opacity: 0.5;
+  border-radius: 12px;
+  flex-shrink: 0;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
 }
 
 .detail-info {
   position: relative;
   z-index: 1;
-  padding: 20px;
+  /* padding dihapus karena sudah dikontrol oleh .detail-card */
 }
 
+/* --- Sisanya biarkan sama persis dengan punyamu --- */
 .detail-to {
   font-size: 14px;
   font-weight: 400;
