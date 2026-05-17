@@ -5,9 +5,14 @@ import MessageCard from '../components/MessageCard'
 export default function Home() {
     const [messages, setMessages] = useState([])
     const [loading, setLoading] = useState(true)
+    const [search, setSearch] = useState('')
 
     useEffect(() => {
-        fetch('http://localhost:5000/api/messages')
+        const url = search.trim()
+        ? `http://localhost:5000/api/messages?search=${encodeURIComponent(search)}`
+        : 'http://localhost:5000/api/messages'
+
+        fetch(url)
         .then(res => res.json())
         .then(data => {
             setMessages(data)
@@ -17,11 +22,11 @@ export default function Home() {
             console.error(err)
             setLoading(false)
         })
-    }, [])
+    }, [search])
 
     return (
         <div>
-        <Navbar />
+        <Navbar onSearch={setSearch} />
 
         <div className="profile-banner">
             <img src="/profile.jpg" alt="profile" className="profile-pic" />
@@ -32,22 +37,23 @@ export default function Home() {
             </div>
         </div>
 
-        <div className="feed-header">
+        <div className="feed-section">
+            <div className="feed-header">
             <h2 className="feed-title">Public Messages</h2>
             <p className="feed-count">{messages.length} Messages found</p>
-        </div>
+            </div>
 
-        <div className="card-grid">
-            {loading 
-            ? <p>Loading...</p>
-            : messages.length === 0 
+            <div className="card-grid">
+            {loading
+                ? <p>Loading...</p>
+                : messages.length === 0
                 ? <p className="empty-state">No Messages Sent</p>
-                : messages.map(msg => (
-                    <MessageCard key={msg.id} message={msg} />
+                : messages.map((msg, index) => (
+                    <MessageCard key={msg.id} message={msg} index={index} />
                 ))
             }
+            </div>
         </div>
-
         </div>
     )
 }
