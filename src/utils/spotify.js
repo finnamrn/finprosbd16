@@ -1,5 +1,5 @@
 const CLIENT_ID = 'd4f28e7698df462da9f27a34f21ccd5a'
-const REDIRECT_URI = 'http://127.0.0.1:5173'
+const REDIRECT_URI = 'https://echo-drop-eight.vercel.app'
 
 export function getSpotifyToken() {
     return localStorage.getItem('spotify_token')
