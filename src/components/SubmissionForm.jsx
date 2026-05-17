@@ -87,7 +87,7 @@ export default function SubmissionForm() {
                 throw new Error(uploadData.error || 'Upload gagal')
             }
 
-            imageUrl = uploadData.imageUrl
+            imageUrl = uploadData.url
         }
 
         const messageBody = {
