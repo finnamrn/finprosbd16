@@ -8,7 +8,7 @@ export default function MessageDetail() {
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
-    fetch(`http://localhost:5000/api/messages/${id}`)
+    fetch(`https://finprosbdkel16backend-production.up.railway.app/api/messages/${id}`)
         .then(res => res.json())
         .then(data => {
             setMessage(data)

@@ -76,7 +76,7 @@ export default function SubmissionForm() {
             const formData = new FormData()
             formData.append('image', image)
 
-            const uploadRes = await fetch('http://localhost:5000/api/upload', {
+            const uploadRes = await fetch('https://finprosbdkel16backend-production.up.railway.app/api/upload', {
                 method: 'POST',
                 body: formData
             })
@@ -106,7 +106,7 @@ export default function SubmissionForm() {
                 : null
         }
 
-        const res = await fetch('http://localhost:5000/api/messages', {
+        const res = await fetch('https://finprosbdkel16backend-production.up.railway.app/api/messages', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

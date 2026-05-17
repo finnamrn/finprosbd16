@@ -12,8 +12,8 @@ export default function Home() {
         processSpotifyToken(); 
 
         const url = search.trim()
-        ? `http://localhost:5000/api/messages?search=${encodeURIComponent(search)}`
-        : 'http://localhost:5000/api/messages'
+        ? `https://finprosbdkel16backend-production.up.railway.app/api/messages?search=${encodeURIComponent(search)}`
+        : 'https://finprosbdkel16backend-production.up.railway.app/api/messages'
 
         fetch(url)
         .then(res => res.json())
