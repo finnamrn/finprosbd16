@@ -1,0 +1,614 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;800&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #000000;
+  color: #ffffff;
+  font-family: 'Inter', sans-serif;
+  min-height: 100vh;
+}
+
+/* ───── NAVBAR ───── */
+.navbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: #000000;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav-icon {
+  background: #1a1a1a;
+  border: none;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.nav-icon img {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+}
+
+.search-bar {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #1a1a1a;
+  border-radius: 999px;
+  padding: 10px 16px;
+}
+
+.search-bar img {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+  opacity: 0.6;
+}
+
+.search-bar input {
+  background: none;
+  border: none;
+  outline: none;
+  color: #ffffff;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  width: 100%;
+}
+
+.search-bar input::placeholder {
+  color: #888888;
+}
+
+.nav-auth {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav-username {
+  font-size: 13px;
+  font-weight: 400;
+  color: #cccccc;
+}
+
+.nav-new {
+  background: #00DA5A;
+  border: none;
+  color: #000000;
+  font-size: 20px;
+  font-weight: 800;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.nav-logout {
+  background: none;
+  border: 1px solid #444;
+  color: #aaa;
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+}
+
+.nav-login {
+  background: #00DA5A;
+  border: none;
+  color: #000000;
+  font-size: 13px;
+  font-weight: 800;
+  padding: 8px 16px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+}
+
+/* ───── PROFILE BANNER ───── */
+.profile-banner {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 24px 20px;
+  background: linear-gradient(135deg, #00DA5A, #0FD15A, #1BB351);
+  border-radius: 20px 20px 0 0;
+  margin: 8px 12px 0 12px;
+}
+
+.profile-pic {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(255,255,255,0.3);
+}
+
+.profile-label {
+  font-size: 12px;
+  font-weight: 400;
+  color: rgba(255,255,255,0.8);
+  display: block;
+  margin-bottom: 2px;
+}
+
+.app-title {
+  font-size: 32px;
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.1;
+}
+
+.app-subtitle {
+  font-size: 13px;
+  font-weight: 400;
+  color: rgba(255,255,255,0.85);
+  margin-top: 4px;
+}
+
+/* ───── FEED SECTION ───── */
+.feed-section {
+  background: linear-gradient(180deg, #199946 0%, #297744 40%, #343434 100%);
+  border-radius: 0;
+  margin: 0 12px 12px 12px;
+  padding: 20px 16px 24px 16px;
+}
+
+.feed-header {
+  margin-bottom: 16px;
+}
+
+.feed-title {
+  font-size: 20px;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.feed-count {
+  font-size: 14px;
+  font-weight: 400;
+  color: rgba(255,255,255,0.8);
+  margin-top: 2px;
+}
+
+/* ───── CARD GRID ───── */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.empty-state {
+  grid-column: 1 / -1;
+  text-align: center;
+  color: rgba(255,255,255,0.5);
+  font-size: 14px;
+  font-weight: 400;
+  padding: 40px 0;
+}
+
+/* ───── MESSAGE CARD ───── */
+.message-card {
+  cursor: pointer;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #1a1a1a;
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.message-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.message-card:hover {
+  transform: translateY(-4px) scale(1.02);
+  transition: transform 0.2s ease;
+}
+
+.card-thumbnail {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  display: block;
+}
+
+.card-content {
+  font-size: 12px;
+  font-weight: 800;
+  color: #ffffff;
+  padding: 8px 8px 2px 8px;
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.card-to {
+  font-size: 11px;
+  font-weight: 400;
+  color: rgba(255,255,255,0.6);
+  padding: 0 8px 8px 8px;
+  display: block;
+}
+
+/* ───── DETAIL PAGE ───── */
+.detail-card {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  margin: 20px auto;
+  border-radius: 16px;
+  overflow: hidden;
+  background: linear-gradient(135deg, #c8a96e, #e8c97a, #1a1a1a);
+  min-height: 280px;
+  display: flex;
+  
+  /* PERUBAHAN UTAMA: Baris ke samping, bukan tumpuk */
+  flex-direction: row; 
+  align-items: center;
+  padding: 30px;
+  gap: 30px;
+}
+
+/* Pengganti .detail-thumbnail agar tidak jadi background */
+.detail-thumbnail-box {
+  width: 250px;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 12px;
+  flex-shrink: 0;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.detail-info {
+  position: relative;
+  z-index: 1;
+  /* padding dihapus karena sudah dikontrol oleh .detail-card */
+}
+
+/* --- Sisanya biarkan sama persis dengan punyamu --- */
+.detail-to {
+  font-size: 14px;
+  font-weight: 400;
+  color: rgba(255,255,255,0.8);
+  display: block;
+  margin-bottom: 6px;
+}
+
+.detail-content {
+  font-size: 24px;
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.2;
+}
+
+/* ───── PLAYER ───── */
+.player-section {
+  width: calc(100% - 24px);
+  max-width: 1200px;
+  margin: 0 auto 20px auto;
+}
+
+.player-label {
+  font-size: 13px;
+  font-weight: 400;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 8px;
+}
+
+.yt-player,
+.spotify-preview {
+  width: 100%;
+  border-radius: 12px;
+  border: none;
+}
+
+.yt-player {
+  height: 200px;
+}
+
+/* ───── SUBMISSION SECTION ───── */
+.submission-section {
+  margin: 0 12px 12px 12px;
+  background: #1a1a1a;
+  border-radius: 16px;
+  padding: 20px;
+}
+
+.submission-title {
+  font-size: 13px;
+  font-weight: 400;
+  color: rgba(255,255,255,0.5);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 16px;
+}
+
+.submission-form .submission-title {
+  font-size: 22px;
+  font-weight: 800;
+  color: #ffffff;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.form-main {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.image-upload {
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.image-placeholder {
+  width: 120px;
+  height: 120px;
+  background: #2a2a2a;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  color: rgba(255,255,255,0.4);
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.image-placeholder span {
+  font-size: 28px;
+}
+
+.image-preview {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 12px;
+  display: block;
+}
+
+.form-fields {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.input-to,
+.input-message,
+.auth-input {
+  background: #2a2a2a;
+  border: none;
+  outline: none;
+  color: #ffffff;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  border-radius: 10px;
+  padding: 10px 14px;
+}
+
+.input-to::placeholder,
+.input-message::placeholder {
+  color: rgba(255,255,255,0.35);
+}
+
+.input-message {
+  flex: 1;
+  resize: none;
+  min-height: 80px;
+}
+
+/* ───── SONG PICKER ───── */
+.song-picker {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #2a2a2a;
+  border-radius: 999px;
+  padding: 10px 16px;
+  margin-bottom: 12px;
+}
+
+.song-picker img {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+  opacity: 0.6;
+}
+
+.song-input {
+  background: none;
+  border: none;
+  outline: none;
+  color: #ffffff;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  flex: 1;
+}
+
+.song-input::placeholder {
+  color: rgba(255,255,255,0.35);
+}
+
+.song-results {
+  background: #2a2a2a;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+
+.song-result-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  cursor: pointer;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  transition: background 0.15s ease;
+}
+
+.song-result-item:hover {
+  background: #333333;
+}
+
+.song-result-item img {
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
+  object-fit: cover;
+}
+
+.song-result-item p {
+  font-size: 13px;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.song-result-item span {
+  font-size: 12px;
+  font-weight: 400;
+  color: rgba(255,255,255,0.5);
+}
+
+/* ───── SUBMIT BUTTON ───── */
+.submit-btn {
+  width: 100%;
+  background: #00DA5A;
+  border: none;
+  color: #000000;
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  padding: 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: opacity 0.2s ease;
+}
+
+.submit-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ───── AUTH PAGE ───── */
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.auth-title {
+  font-size: 36px;
+  font-weight: 800;
+  color: #ffffff;
+  text-align: center;
+}
+
+.auth-subtitle {
+  font-size: 14px;
+  font-weight: 400;
+  color: rgba(255,255,255,0.5);
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.auth-input {
+  width: 100%;
+  padding: 14px 16px;
+}
+
+.auth-input::placeholder {
+  color: rgba(255,255,255,0.35);
+}
+
+.auth-btn {
+  width: 100%;
+  background: #00DA5A;
+  border: none;
+  color: #000000;
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  padding: 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  margin-top: 4px;
+  transition: opacity 0.2s ease;
+}
+
+.auth-btn:disabled {
+  opacity: 0.5;
+}
+
+.auth-error {
+  background: rgba(255, 80, 80, 0.15);
+  border: 1px solid rgba(255, 80, 80, 0.3);
+  color: #ff6b6b;
+  font-size: 13px;
+  font-weight: 400;
+  padding: 10px 14px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.auth-switch {
+  font-size: 13px;
+  font-weight: 400;
+  color: rgba(255,255,255,0.4);
+  text-align: center;
+}
+
+.auth-switch a {
+  color: #00DA5A;
+  text-decoration: none;
+  font-weight: 800;
+}
+
+.camera-icon {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  opacity: 0.6;
+}
