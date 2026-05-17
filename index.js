@@ -1,7 +1,6 @@
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
-const { connectRedis } = require('./src/config/redis')
 require('dotenv').config();
 
 const app = express();
@@ -22,8 +21,6 @@ app.get('/', (req, res) => {
 });
 
 const PORT = process.env.PORT || 5000;
-
-connectRedis()
 
 app.listen(PORT, () => {
     console.log(`Server EchoDrop berjalan di port ${PORT}`);
